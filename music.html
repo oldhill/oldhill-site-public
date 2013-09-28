@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Pitchfork and RA Recommend</title>
+    <link href="css/randomstuff.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+
+    </script>
+    <!-- ajax requests -->
+    <script>
+      $(document).on("ready", function(){
+
+        fetchAndUpdate('http://oldhillcode.com/best', '#pitchfork-album-container');
+        fetchAndUpdate('http://oldhillcode.com/rarecs', '#ra-album-container');
+
+        function fetchAndUpdate(url, domId) {
+          $.get(url, function(data) {
+            var perLineData = data.split('\n');
+            for (var i = 0; i < perLineData.length; i++){
+              $(domId).append(perLineData[i]+'<br>');
+            }
+          });
+        }
+
+      });
+    </script>
+
+  </head>
+
+  <body class="graygradientchill">
+
+    <div id="pitchfork-album-container" class="musictext">
+      <strong><em>Pitchfork recommends:</strong></em><p>
+      <!-- this will get populated by jquery/ajax -->
+    </div>
+
+    <div id="ra-album-container" class="musictext">
+      <strong><em>Resident Advisor recommends:</strong></em><p>
+      <!-- this will get populated by jquery/ajax -->
+    </div>
+
+    <div id="pitchfork-read-more" class="readmore">
+      <p>Check out the reviews at <a href="http://pitchfork.com/best">Pitchfork</a> and <a href="http://www.residentadvisor.net/reviews.aspx?format=recommend">Resident Advisor</a>.
+    </div>
+
+    <div id="footer-and-info" class="smallchill">
+      <p>This page is generated with a strange mix of Python, JavaScript, and more.
+      <br>Most of the code, including unofficial Pitchfork and RA "APIs," is <a href="https://github.com/oldhill">on GitHub.</a>
+    </div>
+
+  </body>
+
+</html>

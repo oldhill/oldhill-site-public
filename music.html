@@ -18,7 +18,7 @@
         function fetchAndUpdate(url, domId) {
           $.get(url, function(data) {
             var perLineData = data.split('\n');
-            for (var i = 0; i < perLineData.length; i++){
+            for (var i = 0; i < Math.min(perLineData.length, 5); i++){
               $(domId).append(perLineData[i]+'<br>');
             }
           });
@@ -37,6 +37,7 @@
     </div>
 
     <div id="ra-album-container" class="musictext">
+      <p>
       <strong><em>Resident Advisor recommends:</strong></em><p>
       <!-- this will get populated by jquery/ajax -->
     </div>
